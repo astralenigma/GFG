@@ -22,7 +22,6 @@ public abstract class Task : MonoBehaviour
     {
         return goal;
     }
-    // Update is called once per frame
     void Update()
     {
         

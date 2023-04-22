@@ -33,7 +33,7 @@ public class PlayerMovement : MonoBehaviour
         
         if (movedir!=Vector3.zero)
         {
-            //movedir= cam.transform.right*movedir.x+cam.transform.forward*movedir.z;
+            //movedir= cam.transform.right*movedir.x+cam.transform.forward*movedir.z
             controller.Move(movedir.normalized * speed * Time.deltaTime);
             float anglemove = Vector3.Angle(transform.rotation.eulerAngles, movedir);
             Quaternion toRotation = Quaternion.LookRotation(movedir, Vector3.up);
