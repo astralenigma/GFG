@@ -15,7 +15,8 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI clock;
     public Light sun;
     public float timeRate=180;
-    
+    public int startHour =0;
+    public int startMinute =0;
     [Header("Game")]
     public float energy = 0;
     public float tasks;
@@ -23,6 +24,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
     AsyncOperation asyncLoad;
     bool loadDone;
+    bool paused = false;
     float time = 0;
     // Start is called before the first frame update
     void Start()
@@ -38,28 +40,52 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButton("Cancel"))
+        if (Input.GetButtonDown("Cancel"))
         {
-            PauseGame();
+            TogglePause();
         }
         TickTime();
     }
-
+    void TogglePause()
+    {
+        if (paused)
+        {
+            ResumeGame();
+        }
+        else
+        {
+            PauseGame();
+        }
+    }
     void PauseGame()
     {
         Time.timeScale = 0;
+        menu.SetActive(true);
+        paused= true;
     }
 
     public void ResumeGame()
     {
         Time.timeScale = 1;
+        menu.SetActive(false);
+        paused= false;
+    }
+    void ResetVariables()
+    {
+        paused = false;
+        energy = 1;
+        tasks=0;
+        tasksDone = 0;
+        time = startHour*60+startMinute;
     }
     public void StartGame()
     {
         loadDone = false;
+        ResetVariables();
         StartCoroutine(LoadAsyncScene(1));
         menu.SetActive(false);
         loadingScreen.SetActive(true);
+        
     }
 
     IEnumerator LoadAsyncScene(int i)
@@ -76,6 +102,7 @@ public class GameManager : MonoBehaviour
             loadDone = asyncLoad.isDone;
         }
         loadingScreen.SetActive(false);
+        ResumeGame();
     }
     void EndGame()
     {
@@ -94,10 +121,10 @@ public class GameManager : MonoBehaviour
 
     private void UpdateClock()
     {
-        int day = ((int)time / 24 / 60)+1;
+        int day = ((int)time / 1440)+1;
         int hour = (int)time / 60%24;
-        int minute = (int)time%60;
-        clock.text=parseTime(hour)+":"+parseTime(minute);
+        int minute = (int)(time%60)/10;
+        clock.text=parseTime(hour)+":"+parseTime(minute*10);
     }
     void UpdateSun()
     {
