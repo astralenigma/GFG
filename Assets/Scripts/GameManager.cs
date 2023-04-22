@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System;
-using UnityEngine.Experimental.GlobalIllumination;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     [Header("Menu")]
     public GameObject menu;
+    public GameObject loadingScreen;
     public GameObject hud;
     [Header("Time")]
     public TextMeshProUGUI clock;
@@ -19,7 +20,8 @@ public class GameManager : MonoBehaviour
     public float energy = 0;
     
     public static GameManager Instance { get; private set; }
-    
+    AsyncOperation asyncLoad;
+    bool loadDone;
     float time = 0;
     // Start is called before the first frame update
     void Start()
@@ -51,7 +53,29 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1;
     }
+    public void StartGame()
+    {
+        loadDone = false;
+        StartCoroutine(LoadAsyncScene(1));
+        menu.SetActive(false);
+        loadingScreen.SetActive(true);
+    }
 
+    IEnumerator LoadAsyncScene(int i)
+    {
+        asyncLoad =SceneManager.LoadSceneAsync(i,LoadSceneMode.Single);
+        
+        while (!asyncLoad.isDone)
+        {
+            if (asyncLoad.progress>=0.9f)
+            {
+                asyncLoad.allowSceneActivation = true;
+            }
+            yield return null;
+            loadDone = asyncLoad.isDone;
+        }
+        loadingScreen.SetActive(false);
+    }
     void EndGame()
     {
 
