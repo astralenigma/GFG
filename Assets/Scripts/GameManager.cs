@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
     public List<GameObject> possibleTasks;
     public static GameManager Instance { get; private set; }
     AsyncOperation asyncLoad;
+    Player player;
     bool loadDone;
     bool paused = false;
     bool gameStarted = false;
@@ -169,4 +170,8 @@ public class GameManager : MonoBehaviour
         return time.ToString("00");
     }
 
+    internal void SetPlayer(Player player)
+    {
+        activePlayer= player;
+    }
 }
