@@ -26,8 +26,10 @@ public class GameManager : MonoBehaviour
     public float tasksDone;
     public float timeBetweenTasks = 30;
     public List<GameObject> possibleTasks;
+    public List<Task> activeTasks;
     public static GameManager Instance { get; private set; }
     AsyncOperation asyncLoad;
+    Player activePlayer;
     bool loadDone;
     bool paused = false;
     bool gameStarted = false;
@@ -169,4 +171,18 @@ public class GameManager : MonoBehaviour
         return time.ToString("00");
     }
 
+    internal void SetPlayer(Player player)
+    {
+        activePlayer= player;
+    }
+
+    internal void RemoveTask(Task task)
+    {
+        activeTasks.Remove(task);
+    }
+
+    internal void AddActiveTask(Task task)
+    {
+        activeTasks.Add(task);
+    }
 }
