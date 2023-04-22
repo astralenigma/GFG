@@ -18,7 +18,8 @@ public class GameManager : MonoBehaviour
     
     [Header("Game")]
     public float energy = 0;
-    
+    public float tasks;
+    public float tasksDone;
     public static GameManager Instance { get; private set; }
     AsyncOperation asyncLoad;
     bool loadDone;
