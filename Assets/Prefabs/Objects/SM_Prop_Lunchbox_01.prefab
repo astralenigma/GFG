@@ -181,7 +181,7 @@ GameObject:
   - component: {fileID: 2853558493362758022}
   m_Layer: 0
   m_Name: SM_Prop_Lunchbox_01
-  m_TagString: Untagged
+  m_TagString: Food
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -261,7 +261,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6639006168704040608}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.34441316, y: 0.14579315, z: 0.29654816}
