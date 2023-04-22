@@ -87,8 +87,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
-  rotationSpeed: 45
+  rotationSpeed: 270
   gfx: {fileID: 7606003098633459281}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 1
 --- !u!1001 &7604547365672310513
 PrefabInstance:
   m_ObjectHideFlags: 0

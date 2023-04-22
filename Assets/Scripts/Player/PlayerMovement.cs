@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     public float speed = 10;
     public float rotationSpeed = 5;
     public GameObject gfx;
+    public LayerMask groundLayer;
     CharacterController controller;
     Animator animator;
     float lastRotationY = 0;
@@ -23,6 +24,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         Vector3 movedir = movementInput();
+        Ground();
         if (movedir!=Vector3.zero)
         {
 
@@ -45,6 +47,15 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
+    void Ground()
+    {
+        Ray ray = new Ray(transform.position, Vector3.down);
+        Debug.DrawRay(ray.origin, ray.direction, Color.yellow, 2);
+        if (Physics.Raycast(ray,out RaycastHit hit, 100f, groundLayer))
+        {
+            transform.position = hit.point;
+        }
+    }
     Vector3 movementInput()
     {
         return new Vector3(Input.GetAxis("Horizontal"),0, Input.GetAxis("Vertical")); ;
