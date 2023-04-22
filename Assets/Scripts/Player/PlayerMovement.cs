@@ -35,7 +35,7 @@ public class PlayerMovement : MonoBehaviour
             Quaternion toRotation = Quaternion.LookRotation(movedir, Vector3.up);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
             //float angle = Vector3.Angle( lastRotationY * Vector3.up, transform.rotation.eulerAngles);
-            animator.SetFloat("Turn", anglemove);
+            animator.SetFloat("Turn", movedir.x* anglemove/90);
         }
         else
         {
@@ -49,7 +49,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Ground()
     {
-        Ray ray = new Ray(transform.position, Vector3.down);
+        Ray ray = new Ray(transform.position+Vector3.up*0.1f, Vector3.down);
         Debug.DrawRay(ray.origin, ray.direction, Color.yellow, 2);
         if (Physics.Raycast(ray,out RaycastHit hit, 100f, groundLayer))
         {
