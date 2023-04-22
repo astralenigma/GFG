@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EscortItem : MonoBehaviour
+public class PlayerOldItem : MonoBehaviour
 {
-
+    public GameObject[] taskItems;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,10 +16,6 @@ public class EscortItem : MonoBehaviour
     {
         
     }
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Food")){
-            Debug.Log("Player apanhou a comida.");
-        }
-    }
+
+    
 }
