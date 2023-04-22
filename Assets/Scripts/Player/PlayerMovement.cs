@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    
+
     public float speed = 10;
     public float rotationSpeed = 5;
     public GameObject gfx;
@@ -18,24 +18,31 @@ public class PlayerMovement : MonoBehaviour
         controller = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
         lastRotationY = transform.rotation.y;
+        if (GameManager.Instance==null)
+        {
+            DebugPlayer();
+        }
     }
-
+    void DebugPlayer()
+    {
+        Time.timeScale = 1.0f;
+    }
     // Update is called once per frame
     void Update()
     {
         Vector3 movedir = movementInput();
         Ground();
-        if (movedir!=Vector3.zero)
+        if (movedir != Vector3.zero)
         {
 
             controller.Move(movedir.normalized * speed * Time.deltaTime);
             float anglemove = Vector3.Angle(transform.rotation.eulerAngles, movedir);
-            
+
 
             Quaternion toRotation = Quaternion.LookRotation(movedir, Vector3.up);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
             //float angle = Vector3.Angle( lastRotationY * Vector3.up, transform.rotation.eulerAngles);
-            animator.SetFloat("Turn", movedir.x* anglemove/90);
+            animator.SetFloat("Turn", movedir.x * anglemove / 90);
         }
         else
         {
@@ -50,15 +57,15 @@ public class PlayerMovement : MonoBehaviour
 
     void Ground()
     {
-        Ray ray = new Ray(transform.position+Vector3.up*0.1f, Vector3.down);
+        Ray ray = new Ray(transform.position + Vector3.up * 0.1f, Vector3.down);
         Debug.DrawRay(ray.origin, ray.direction, Color.yellow, 2);
-        if (Physics.Raycast(ray,out RaycastHit hit, 100f, groundLayer))
+        if (Physics.Raycast(ray, out RaycastHit hit, 100f, groundLayer))
         {
             transform.position = hit.point;
         }
     }
     Vector3 movementInput()
     {
-        return new Vector3(Input.GetAxis("Horizontal"),0, Input.GetAxis("Vertical")); ;
+        return new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")); ;
     }
 }
