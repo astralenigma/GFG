@@ -28,7 +28,7 @@ public class PlayerMovement : MonoBehaviour
         if (movedir!=Vector3.zero)
         {
 
-            controller.Move(movedir * speed * Time.deltaTime);
+            controller.Move(movedir.normalized * speed * Time.deltaTime);
             float anglemove = Vector3.Angle(transform.rotation.eulerAngles, movedir);
             
 
