@@ -11,27 +11,31 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask groundLayer;
     CharacterController controller;
     Animator animator;
+    Camera cam;
     float lastRotationY = 0;
     // Start is called before the first frame update
     void Start()
     {
+        cam = Camera.main;
         controller = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
         lastRotationY = transform.rotation.y;
+        
     }
-
+    public void DebugPlayerMovement()
+    {
+            Time.timeScale = 1.0f;
+    }
     // Update is called once per frame
     void Update()
     {
         Vector3 movedir = movementInput();
-        Ground();
+        
         if (movedir!=Vector3.zero)
         {
-
+            movedir= cam.transform.right*movedir.x+cam.transform.forward*movedir.z;
             controller.Move(movedir.normalized * speed * Time.deltaTime);
             float anglemove = Vector3.Angle(transform.rotation.eulerAngles, movedir);
-            
-
             Quaternion toRotation = Quaternion.LookRotation(movedir, Vector3.up);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
             //float angle = Vector3.Angle( lastRotationY * Vector3.up, transform.rotation.eulerAngles);
@@ -42,7 +46,7 @@ public class PlayerMovement : MonoBehaviour
             animator.SetFloat("Turn", 0);
         }
         animator.SetFloat("Forward", movedir.magnitude);
-
+        Ground();
         //gfx.transform.Rotate(Vector3.up * anglemove);
         //lastRotationY = transform.rotation.eulerAngles.y;
 
