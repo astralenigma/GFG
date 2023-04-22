@@ -30,7 +30,7 @@ public class PlayerMovement : MonoBehaviour
 
             controller.Move(movedir * speed * Time.deltaTime);
             float anglemove = Vector3.Angle(transform.rotation.eulerAngles, movedir);
-            animator.SetFloat("Forward", movedir.magnitude);
+            
 
             Quaternion toRotation = Quaternion.LookRotation(movedir, Vector3.up);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
@@ -41,6 +41,7 @@ public class PlayerMovement : MonoBehaviour
         {
             animator.SetFloat("Turn", 0);
         }
+        animator.SetFloat("Forward", movedir.magnitude);
 
         //gfx.transform.Rotate(Vector3.up * anglemove);
         //lastRotationY = transform.rotation.eulerAngles.y;
