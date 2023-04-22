@@ -1383,13 +1383,9 @@ MonoBehaviour:
   timeRate: 3.2
   startHour: 7
   startMinute: 0
-  maxEnergy: 1
   energy: 0
-  energyDrain: 0.1
   tasks: 0
   tasksDone: 0
-  timeBetweenTasks: 30
-  possibleTasks: []
 --- !u!4 &1793988938
 Transform:
   m_ObjectHideFlags: 0
