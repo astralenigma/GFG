@@ -18,14 +18,22 @@ public class GameManager : MonoBehaviour
     public int startHour =0;
     public int startMinute =0;
     [Header("Game")]
-    public float energy = 0;
+    public float maxEnergy = 1;
+    public float energy;
+    [Range(0f, 1f)]
+    public float energyDrain = .1f;
     public float tasks;
     public float tasksDone;
+    public float timeBetweenTasks = 30;
+    public List<GameObject> possibleTasks;
     public static GameManager Instance { get; private set; }
     AsyncOperation asyncLoad;
     bool loadDone;
     bool paused = false;
+    bool gameStarted = false;
     float time = 0;
+    private bool gameEnded;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -45,6 +53,30 @@ public class GameManager : MonoBehaviour
             TogglePause();
         }
         TickTime();
+        CheckGameOver();
+    }
+    IEnumerator CreateTaskRoutine()
+    {
+        while (!gameEnded)
+        {
+            CreateTask();
+            yield return new WaitForSeconds(timeBetweenTasks);
+        }
+    }
+    void CreateTask()
+    {
+        tasks++;
+    }
+    private void CheckGameOver()
+    {
+        if (tasks-tasksDone>4)
+        {
+            GameOver();
+        }
+    }
+    void GameOver()
+    {
+        Debug.Log("You Lose");
     }
     void TogglePause()
     {
@@ -73,10 +105,11 @@ public class GameManager : MonoBehaviour
     void ResetVariables()
     {
         paused = false;
-        energy = 1;
+        energy = maxEnergy;
         tasks=0;
         tasksDone = 0;
         time = startHour*60+startMinute;
+        gameStarted = false;
     }
     public void StartGame()
     {
@@ -85,7 +118,7 @@ public class GameManager : MonoBehaviour
         StartCoroutine(LoadAsyncScene(1));
         menu.SetActive(false);
         loadingScreen.SetActive(true);
-        
+        StartCoroutine( CreateTaskRoutine());
     }
 
     IEnumerator LoadAsyncScene(int i)
@@ -102,11 +135,12 @@ public class GameManager : MonoBehaviour
             loadDone = asyncLoad.isDone;
         }
         loadingScreen.SetActive(false);
+        gameStarted = true;
         ResumeGame();
     }
     void EndGame()
     {
-
+        gameEnded = true;
     }
     public void QuitGame()
     {
