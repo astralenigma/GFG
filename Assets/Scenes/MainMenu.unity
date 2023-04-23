@@ -1387,7 +1387,7 @@ MonoBehaviour:
   timeRate: 3.2
   startHour: 7
   startMinute: 0
-  maxEnergy: 1
+  maxEnergy: 50
   energyDrain: 0.1
   tasks: 0
   tasksDone: 0
