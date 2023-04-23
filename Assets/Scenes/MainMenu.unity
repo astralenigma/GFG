@@ -1379,6 +1379,9 @@ MonoBehaviour:
   menu: {fileID: 2032148366}
   loadingScreen: {fileID: 859864358}
   hud: {fileID: 42626207}
+  energyBar: {fileID: 0}
+  taskCounter: {fileID: 0}
+  taskDoneCounter: {fileID: 0}
   clock: {fileID: 644715922}
   sun: {fileID: 1575916946}
   timeRate: 3.2
@@ -1390,7 +1393,8 @@ MonoBehaviour:
   tasks: 0
   tasksDone: 0
   timeBetweenTasks: 30
-  possibleTasks: []
+  possibleTasks:
+  - {fileID: 8971995413591963085, guid: ba08dbf9c386ab14a94c58aebd0d5c21, type: 3}
   activeTasks: []
 --- !u!4 &1793988938
 Transform:

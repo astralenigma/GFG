@@ -4,6 +4,9 @@ using UnityEngine;
 using TMPro;
 using System;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using Random = UnityEngine.Random;
+using System.Linq;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,6 +14,9 @@ public class GameManager : MonoBehaviour
     public GameObject menu;
     public GameObject loadingScreen;
     public GameObject hud;
+    public Slider energyBar;
+    public TextMeshProUGUI taskCounter;
+    public TextMeshProUGUI taskDoneCounter;
     [Header("Time")]
     public TextMeshProUGUI clock;
     public Light sun;
@@ -19,14 +25,26 @@ public class GameManager : MonoBehaviour
     public int startMinute =0;
     [Header("Game")]
     public float maxEnergy = 1;
-    public float energy;
+    private float _energy;
+    public float Energy {
+        get
+        {
+            return _energy;
+        } set
+        {
+            if (value<=0 &&maxEnergy>=value)
+            {
+                _energy= value;
+            }
+        } }
     [Range(0f, 1f)]
     public float energyDrain = .1f;
     public float tasks;
     public float tasksDone;
     public float timeBetweenTasks = 30;
-    public List<GameObject> possibleTasks;
+    public List<Task> possibleTasks;
     public List<Task> activeTasks;
+    public List<EnergyRestoreLocation> restoreLocations;
     public static GameManager Instance { get; private set; }
     AsyncOperation asyncLoad;
     Player activePlayer;
@@ -56,6 +74,26 @@ public class GameManager : MonoBehaviour
         }
         TickTime();
         CheckGameOver();
+        UpdateText();
+        EnergyDrain();
+    }
+
+    private void UpdateText()
+    {
+        //Canvas Update procedure
+    }
+    private void EnergyDrain()
+    {
+        Energy-=energyDrain;
+        if (Energy<=0)
+        {
+            Knockout();
+        }
+    }
+
+    private void Knockout()
+    {
+        
     }
     IEnumerator CreateTaskRoutine()
     {
@@ -67,6 +105,9 @@ public class GameManager : MonoBehaviour
     }
     void CreateTask()
     {
+        if (possibleTasks.Count<=0) { return; }
+        int t = Random.Range(0, possibleTasks.Count);
+        Instantiate(possibleTasks.ElementAt<Task>(t).gameObject);
         tasks++;
     }
     private void CheckGameOver()
@@ -74,6 +115,9 @@ public class GameManager : MonoBehaviour
         if (tasks-tasksDone>4)
         {
             GameOver();
+        }
+        if (time>(startHour*60+startMinute)-24*60) {
+            gameEnded = true;
         }
     }
     void GameOver()
@@ -107,11 +151,12 @@ public class GameManager : MonoBehaviour
     void ResetVariables()
     {
         paused = false;
-        energy = maxEnergy;
+        Energy = maxEnergy;
         tasks=0;
         tasksDone = 0;
         time = startHour*60+startMinute;
         gameStarted = false;
+        gameEnded= false;
     }
     public void StartGame()
     {
