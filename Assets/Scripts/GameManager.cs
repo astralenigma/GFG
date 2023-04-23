@@ -25,7 +25,18 @@ public class GameManager : MonoBehaviour
     public int startMinute =0;
     [Header("Game")]
     public float maxEnergy = 1;
-    public float energy;
+    private float _energy;
+    public float Energy {
+        get
+        {
+            return _energy;
+        } set
+        {
+            if (value<=0 &&maxEnergy>=value)
+            {
+                _energy= value;
+            }
+        } }
     [Range(0f, 1f)]
     public float energyDrain = .1f;
     public float tasks;
@@ -33,6 +44,7 @@ public class GameManager : MonoBehaviour
     public float timeBetweenTasks = 30;
     public List<Task> possibleTasks;
     public List<Task> activeTasks;
+    public List<EnergyRestoreLocation> restoreLocations;
     public static GameManager Instance { get; private set; }
     AsyncOperation asyncLoad;
     Player activePlayer;
@@ -72,7 +84,16 @@ public class GameManager : MonoBehaviour
     }
     private void EnergyDrain()
     {
-        energy-=energyDrain;
+        Energy-=energyDrain;
+        if (Energy<=0)
+        {
+            Knockout();
+        }
+    }
+
+    private void Knockout()
+    {
+        
     }
     IEnumerator CreateTaskRoutine()
     {
@@ -130,7 +151,7 @@ public class GameManager : MonoBehaviour
     void ResetVariables()
     {
         paused = false;
-        energy = maxEnergy;
+        Energy = maxEnergy;
         tasks=0;
         tasksDone = 0;
         time = startHour*60+startMinute;
