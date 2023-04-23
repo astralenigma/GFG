@@ -75,7 +75,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Cancel"))
+        if (Input.GetButtonDown("Cancel") && gameStarted)
         {
             TogglePause();
         }
@@ -172,6 +172,7 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 0;
         menu.SetActive(true);
+        hud.SetActive(false);
         paused = true;
     }
 
@@ -179,10 +180,11 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1;
         menu.SetActive(false);
+        hud.SetActive(true);
         paused = false;
     }
     void ResetVariables()
-    {
+    { 
         paused = false;
         Energy = maxEnergy;
         tasks = 0;
