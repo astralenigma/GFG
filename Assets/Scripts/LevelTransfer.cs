@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class levelTransfer : MonoBehaviour
+public class LevelTransfer : MonoBehaviour
     
 {
     public Transform destiny;
