@@ -6,29 +6,27 @@ public class DeliveryTask : Task
 {
     [SerializeField]
     EscortItem item;
-    bool itemInTransit=false;
+    bool itemInTransit = false;
     public void itemCollected(EscortItem item)
     {
         itemInTransit = true;
     }
 
-    public void itemDelivered() {
+    public void itemDelivered()
+    {
         TaskFinished();
     }
-
-    public override void SetupTask()
-    {
-        item.gameObject.SetActive(true);
-    }
-
-    private void OnTriggerEnter(Collider other)
+    public void DestinationReached()
     {
         if (itemInTransit)
         {
-            if (!other.CompareTag("Player")) {
-                GetComponent<Player>().SetCarriedItem(null);
-                itemDelivered();
-            }
+            GetComponent<Player>().SetCarriedItem(null);
+            itemDelivered();
+
         }
+    }
+    public override void SetupTask()
+    {
+        item.gameObject.SetActive(true);
     }
 }
