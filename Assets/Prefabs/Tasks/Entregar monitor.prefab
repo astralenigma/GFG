@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f96f69272253ff44b9bc2b1bc43e4f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  goal: Entregar o monitor no piso33
+  goal: Entregar o monitor no piso 3
   active: 0
   item: {fileID: 2426837341713780264}
   destiny: {fileID: 8503478893566977922}
@@ -156,7 +156,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 665178976478816185}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 3, y: 1, z: 2}
