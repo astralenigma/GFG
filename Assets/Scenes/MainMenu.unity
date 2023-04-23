@@ -2625,7 +2625,7 @@ MonoBehaviour:
   phone: {fileID: 580589857}
   energyBar: {fileID: 0}
   taskCounter: {fileID: 0}
-  taskDoneCounter: {fileID: 0}
+  taskDoneCounter: {fileID: 2044291174}
   clock: {fileID: 644715922}
   sun: {fileID: 2074488281}
   timeRate: 3.2
