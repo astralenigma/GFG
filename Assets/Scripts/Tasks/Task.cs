@@ -5,7 +5,7 @@ using UnityEngine;
 public abstract class Task : MonoBehaviour
 {
     [SerializeField]
-    string goal;
+    protected string goal;
     // Start is called before the first frame update
     private void Awake()
     {
