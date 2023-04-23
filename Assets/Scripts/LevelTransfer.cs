@@ -11,9 +11,16 @@ public class LevelTransfer : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            PlayerMovement movement = other.GetComponent<PlayerMovement>();
+            movement.enabled=false;
             other.transform.position = destiny.position;
             other.transform.rotation = destiny.rotation;
+            StartCoroutine(restartMovement(movement));
         }
         
+    }
+    IEnumerator restartMovement(PlayerMovement movement) { 
+        yield return new WaitForSeconds(1);
+        movement.enabled=true;
     }
 }
