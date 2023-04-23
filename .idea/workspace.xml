@@ -9,17 +9,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1c6f17a7-8e57-483b-b181-1bfa51b3bf08" name="Changes" comment="Load Screen implementada">
-      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/UI.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/UI/Notification.prefab" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/UI/Notification.prefab.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Phone notification.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Phone notification.anim" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Phone.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Phone.controller" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/MainMenu.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/MainMenu.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Tasks/GoalNotification.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Tasks/GoalNotification.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Tasks/Task.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Tasks/Task.cs" afterDir="false" />
-    </list>
+    <list default="true" id="1c6f17a7-8e57-483b-b181-1bfa51b3bf08" name="Changes" comment="AAAAAAAa" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -29,10 +19,38 @@
     <option name="formatViaClangd" value="false" />
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitToolBoxStore">
     <option name="projectConfigVersion" value="5" />
+    <option name="recentBranches">
+      <RecentBranches>
+        <option name="branchesForRepo">
+          <list>
+            <RecentBranchesForRepo>
+              <option name="branches">
+                <list>
+                  <RecentBranch>
+                    <option name="branchName" value="ricardo" />
+                    <option name="lastUsedInstant" value="1682247451" />
+                  </RecentBranch>
+                  <RecentBranch>
+                    <option name="branchName" value="main" />
+                    <option name="lastUsedInstant" value="1682244379" />
+                  </RecentBranch>
+                </list>
+              </option>
+              <option name="repositoryRootUrl" value="file://$PROJECT_DIR$" />
+            </RecentBranchesForRepo>
+          </list>
+        </option>
+      </RecentBranches>
+    </option>
   </component>
   <component name="MacroExpansionManager">
     <option name="directoryName" value="t5ef5jxq" />
@@ -50,7 +68,6 @@
     "WebServerToolWindowFactoryState": "false",
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
-    "git-widget-placeholder": "Merging main",
     "last_opened_file_path": "/Users/joaocoelho/Code/GFG",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -71,6 +88,7 @@
       <workItem from="1682188111373" duration="2542000" />
       <workItem from="1682236143370" duration="1018000" />
       <workItem from="1682241098969" duration="853000" />
+      <workItem from="1682242045140" duration="2447000" />
     </task>
     <task id="LOCAL-00001" summary="Adição dos elementos ui sem contar com a loading screen">
       <created>1682231873255</created>
@@ -114,7 +132,21 @@
       <option name="project" value="LOCAL" />
       <updated>1682241130198</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Load Screen implementada">
+      <created>1682242149458</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1682242149458</updated>
+    </task>
+    <task id="LOCAL-00008" summary="AAAAAAAa">
+      <created>1682244357148</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1682244357148</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -147,6 +179,7 @@
     <MESSAGE value="Adição dos elementos ui sem contar com a loading screen" />
     <MESSAGE value="Criaçãoda grid para asnotificações" />
     <MESSAGE value="Load Screen implementada" />
-    <option name="LAST_COMMIT_MESSAGE" value="Load Screen implementada" />
+    <MESSAGE value="AAAAAAAa" />
+    <option name="LAST_COMMIT_MESSAGE" value="AAAAAAAa" />
   </component>
 </project>
