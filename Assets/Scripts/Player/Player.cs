@@ -9,7 +9,7 @@ public class Player : MonoBehaviour
     [SerializeField]
     Transform itemHold;
     EscortItem carriedItem;
-    internal bool SetCarriedItem(EscortItem escortItem)
+    public bool SetCarriedItem(EscortItem escortItem)
     {
         if (carriedItem != null)
         {
@@ -17,7 +17,7 @@ public class Player : MonoBehaviour
         }
         carriedItem = escortItem;
         if (carriedItem != null ) {
-            carriedItem.transform.SetParent(itemHold);
+            carriedItem.transform.SetParent(itemHold,false);
         }
         else
         {
@@ -27,6 +27,11 @@ public class Player : MonoBehaviour
         return true;
     }
 
+    public void RemoveCarriedItem()
+    {
+        Destroy(carriedItem.gameObject );
+        carriedItem=null;
+    }
     // Start is called before the first frame update
     void Start()
     {
