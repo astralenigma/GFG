@@ -56,6 +56,7 @@ public class GameManager : MonoBehaviour
     public List<Task> possibleTasks;
     public List<Task> activeTasks;
     public List<EnergyRestoreLocation> restoreLocations;
+    public GameObject[] endGameBackground;
     public static GameManager Instance { get; private set; }
     AsyncOperation asyncLoad;
     Player activePlayer;
@@ -64,7 +65,7 @@ public class GameManager : MonoBehaviour
     bool gameStarted = false;
     float time = 0;
     private bool gameEnded;
-
+    string endGameMessage;
     // Start is called before the first frame update
     void Start()
     {
@@ -167,7 +168,7 @@ public class GameManager : MonoBehaviour
 
     internal void AddActiveTask(Task task)
     {
-        task.SetupGoalNotification(Instantiate(prefabNotification,verticalLayout.transform));
+        task.SetupGoalNotification(Instantiate(prefabNotification, verticalLayout.transform));
         activeTasks.Add(task);
     }
     #endregion
@@ -176,19 +177,40 @@ public class GameManager : MonoBehaviour
     {
         if (tasks - tasksDone > 4)
         {
-            GameOver();
+            GameOver(0);
         }
         if (time > (startHour * 60 + startMinute) + 1440)
         {
-            EndGame();
+            if (tasks==tasksDone)
+            {
+                GameOver(2);
+            }
+            GameOver(1);
         }
     }
-    void GameOver()
+
+    void GameOver(int victory)
     {
-        Debug.Log("You Lose");
+        endGameMessage = GenerateEndGameMessage(victory);
+        
+        EndGame();
     }
+
+    private string GenerateEndGameMessage(int victory)
+    {
+        switch (victory)
+        {
+            case 0: return "Deixaste ficar demasiadas tarefas por fazer.";
+            case 1: return "Sobreviveste à pressão.";
+                case 2: return "És o melhor voluntário do evento.";
+            default:
+                return "Acabou o jogo.";
+                break;
+        }
+    }
+
     void ResetVariables()
-    { 
+    {
         paused = false;
         Energy = maxEnergy;
         tasks = 0;
@@ -218,6 +240,7 @@ public class GameManager : MonoBehaviour
     void EndGame()
     {
         gameEnded = true;
+        Time.timeScale = 0;
     }
     #region MenuControls
     public void ResumeGame()
