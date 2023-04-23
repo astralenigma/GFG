@@ -16,6 +16,11 @@ public class DeliveryTask : Task
         TaskFinished();
     }
 
+    public override void SetupTask()
+    {
+        item.gameObject.SetActive(true);
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (itemInTransit)

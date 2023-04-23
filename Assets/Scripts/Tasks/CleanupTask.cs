@@ -18,4 +18,12 @@ public class CleanupTask : Task
             TaskFinished();
         }
     }
+
+    public override void SetupTask()
+    {
+        foreach (CollectItem item in items)
+        {
+            item.gameObject.SetActive(true);
+        }
+    }
 }
