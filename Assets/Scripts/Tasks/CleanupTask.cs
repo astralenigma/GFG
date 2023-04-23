@@ -16,6 +16,7 @@ public class CleanupTask : Task
         if (items.Count <= 0 )
         {
             TaskFinished();
+            gameObject.SetActive(false);
         }
     }
 
