@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     public GameObject menu;
     public GameObject loadingScreen;
     public GameObject hud;
+    public GameObject endGame;
     [Header("HUD")]
     public GoalNotification prefabNotification;
     public VerticalLayoutGroup verticalLayout;
@@ -204,6 +205,7 @@ public class GameManager : MonoBehaviour
         endGameMessage = GenerateEndGameMessage(victory);
         //endGameBackground[victory].SetActive(true);
         endText.text = endGameMessage;
+        StartCoroutine(LoadAsyncScene( 2 + victory));
         EndGame();
     }
 
@@ -251,6 +253,7 @@ public class GameManager : MonoBehaviour
     void EndGame()
     {
         gameEnded = true;
+        endText.gameObject.SetActive(true);
         Time.timeScale = 0;
     }
     #region MenuControls

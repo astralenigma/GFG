@@ -8,10 +8,19 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: 5bbcfc66b00c9a441a627b1259eda61e
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/GameScene.unity
     guid: 8f694a4decc7c06499443ed7b7c3a303
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/MovementTest.unity
     guid: faa99de3ec8f149468ced5e28b0e3b79
+  - enabled: 1
+    path: Assets/Scenes/Endings/Sad_End.unity
+    guid: 8e3996dab3b2f45ab87bb20211e0b489
+  - enabled: 1
+    path: Assets/Scenes/Endings/False_End.unity
+    guid: 898abc312791d4fa489b223897ee444f
+  - enabled: 1
+    path: Assets/Scenes/Endings/True_End.unity
+    guid: 079d9b24ea245440db4a5d8dc6b216d1
   m_configObjects: {}
