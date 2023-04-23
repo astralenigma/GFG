@@ -168,6 +168,7 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 0;
         menu.SetActive(true);
+        hud.SetActive(false);
         paused = true;
     }
 
@@ -175,6 +176,7 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1;
         menu.SetActive(false);
+        hud.SetActive(true);
         paused = false;
     }
     void ResetVariables()
