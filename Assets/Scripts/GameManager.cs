@@ -75,10 +75,13 @@ public class GameManager : MonoBehaviour
         {
             TogglePause();
         }
-        TickTime();
-        CheckGameOver();
-        UpdateText();
-        EnergyDrain();
+        if (gameStarted)
+        {
+            TickTime();
+            CheckGameOver();
+            UpdateText();
+            EnergyDrain();
+        }
     }
 
     private void UpdateText()
