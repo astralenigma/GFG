@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour
     public GameObject menu;
     public GameObject loadingScreen;
     public GameObject hud;
+    [Header("HUD")]
+    public GoalNotification prefabNotification;
     public Slider energyBar;
     public TextMeshProUGUI taskCounter;
     public TextMeshProUGUI taskDoneCounter;
