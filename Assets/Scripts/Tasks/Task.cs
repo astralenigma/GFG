@@ -12,7 +12,7 @@ public abstract class Task : MonoBehaviour
         GameManager.Instance.AddActiveTask(this);
     }
 
-    protected void TaskFinished()
+    public void TaskFinished()
     {
         GameManager.Instance.RemoveTask(this);
         gameObject.SetActive(false);
@@ -21,9 +21,5 @@ public abstract class Task : MonoBehaviour
     public string TaskGoal()
     {
         return goal;
-    }
-    void Update()
-    {
-        
     }
 }

@@ -4,15 +4,26 @@ using UnityEngine;
 
 public class DeliveryTask : Task
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField]
+    EscortItem item;
+    bool itemInTransit=false;
+    public void itemCollected(EscortItem item)
     {
-        
+        itemInTransit = true;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void itemDelivered() {
+        TaskFinished();
+    }
+
+    private void OnTriggerEnter(Collider other)
     {
-        
+        if (itemInTransit)
+        {
+            if (!other.CompareTag("Player")) {
+                GetComponent<Player>().SetCarriedItem(null);
+                itemDelivered();
+            }
+        }
     }
 }

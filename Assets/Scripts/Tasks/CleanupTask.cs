@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class CleanupTask : Task
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField]
+    List<CollectItem> items;
+    private void Start()
     {
         
     }
-
-    // Update is called once per frame
-    void Update()
+    public void itemCollected(CollectItem item)
     {
-        
+        items.Remove(item);
+        if (items.Count <= 0 )
+        {
+            TaskFinished();
+        }
     }
 }
