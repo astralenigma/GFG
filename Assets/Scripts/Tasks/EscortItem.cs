@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class EscortItem : MonoBehaviour
 {
+    [SerializeField]
+    DeliveryTask task;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,5 +16,13 @@ public class EscortItem : MonoBehaviour
     void Update()
     {
         
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            task.itemCollected(this);
+            other.GetComponent<Player>().SetCarriedItem(this);
+        }
     }
 }
