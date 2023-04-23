@@ -9,7 +9,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1c6f17a7-8e57-483b-b181-1bfa51b3bf08" name="Changes" comment="AAAAAAAa" />
+    <list default="true" id="1c6f17a7-8e57-483b-b181-1bfa51b3bf08" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -68,6 +68,7 @@
     "WebServerToolWindowFactoryState": "false",
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
+    "git-widget-placeholder": "main",
     "last_opened_file_path": "/Users/joaocoelho/Code/GFG",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
