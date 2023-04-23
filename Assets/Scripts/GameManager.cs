@@ -94,7 +94,7 @@ public class GameManager : MonoBehaviour
 
     private void UpdateCanvas()
     {
-        phone.SetFloat("Notifications",activeTasks.Count);
+        phone.SetInteger("notif", activeTasks.Count);
         //Canvas Update procedure
     }
     #region Energy Functions

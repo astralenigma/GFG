@@ -2342,7 +2342,7 @@ MonoBehaviour:
   hud: {fileID: 42626207}
   prefabNotification: {fileID: 5748525433665564745, guid: a35c89d986935f84bac9b3146227e0bb, type: 3}
   verticalLayout: {fileID: 578035980}
-  phone: {fileID: 0}
+  phone: {fileID: 580589857}
   energyBar: {fileID: 0}
   taskCounter: {fileID: 0}
   taskDoneCounter: {fileID: 0}
