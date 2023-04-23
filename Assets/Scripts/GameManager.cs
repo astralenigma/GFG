@@ -84,7 +84,7 @@ public class GameManager : MonoBehaviour
     }
     private void EnergyDrain()
     {
-        Energy-=energyDrain;
+        Energy-=energyDrain*Time.deltaTime;
         if (Energy<=0)
         {
             Knockout();
@@ -199,7 +199,10 @@ public class GameManager : MonoBehaviour
         UpdateClock();
         UpdateSun();
     }
-
+    public void RestoreEnergy(float rate)
+    {
+        Energy += energyDrain * rate * Time.deltaTime;
+    }
     private void UpdateClock()
     {
         int day = ((int)time / 1440)+1;
