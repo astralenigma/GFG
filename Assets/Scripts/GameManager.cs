@@ -184,6 +184,7 @@ public class GameManager : MonoBehaviour
             if (tasks==tasksDone)
             {
                 GameOver(2);
+                return;
             }
             GameOver(1);
         }
@@ -192,7 +193,7 @@ public class GameManager : MonoBehaviour
     void GameOver(int victory)
     {
         endGameMessage = GenerateEndGameMessage(victory);
-        
+        endGameBackground[victory].SetActive(true);
         EndGame();
     }
 
