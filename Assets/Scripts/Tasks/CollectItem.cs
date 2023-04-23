@@ -2,18 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class levelTransfer : MonoBehaviour
-    
+public class CollectItem : MonoBehaviour
 {
-    public Transform destiny;
+    [SerializeField]
+    CleanupTask task;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            other.transform.position = destiny.position;
-            other.transform.rotation = destiny.rotation;
+            task.itemCollected(this);
+            gameObject.SetActive(false);
         }
-        
     }
 }

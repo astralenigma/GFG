@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class EscortItem : MonoBehaviour
 {
-
+    [SerializeField]
+    DeliveryTask task;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,10 +17,12 @@ public class EscortItem : MonoBehaviour
     {
         
     }
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.CompareTag("Food")){
-            Debug.Log("Player apanhou a comida.");
+        if (other.CompareTag("Player"))
+        {
+            task.itemCollected(this);
+            other.GetComponent<Player>().SetCarriedItem(this);
         }
     }
 }

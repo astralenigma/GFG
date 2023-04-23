@@ -5,14 +5,14 @@ using UnityEngine;
 public abstract class Task : MonoBehaviour
 {
     [SerializeField]
-    string goal;
+    protected string goal;
     // Start is called before the first frame update
     private void Awake()
     {
         GameManager.Instance.AddActiveTask(this);
     }
 
-    protected void TaskFinished()
+    public void TaskFinished()
     {
         GameManager.Instance.RemoveTask(this);
         gameObject.SetActive(false);
@@ -21,9 +21,5 @@ public abstract class Task : MonoBehaviour
     public string TaskGoal()
     {
         return goal;
-    }
-    void Update()
-    {
-        
     }
 }
