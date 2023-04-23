@@ -148,9 +148,9 @@ public class GameManager : MonoBehaviour
         {
             GameOver();
         }
-        if (time > (startHour * 60 + startMinute) - 24 * 60)
+        if (time > (startHour * 60 + startMinute) + 1440)
         {
-            gameEnded = true;
+            EndGame();
         }
     }
     void GameOver()
@@ -262,6 +262,7 @@ public class GameManager : MonoBehaviour
     internal void RemoveTask(Task task)
     {
         activeTasks.Remove(task);
+        tasksDone++;
     }
 
     internal void AddActiveTask(Task task)
