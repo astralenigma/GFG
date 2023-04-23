@@ -26,7 +26,15 @@ public class DeliveryTask : Task
             itemDelivered();
 
         }
-        item.transform.SetParent(destiny,false);
+        if(destiny)
+        {
+            item.transform.SetParent(destiny, false);
+        }
+        else
+        {
+            item.gameObject.SetActive(false);
+        }
+        
         //item.transform.position=destiny.position;
     }
     public override void SetupTask()
