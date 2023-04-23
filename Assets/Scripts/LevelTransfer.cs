@@ -7,7 +7,7 @@ public class LevelTransfer : MonoBehaviour
 {
     public Transform destiny;
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("Player"))
         {
