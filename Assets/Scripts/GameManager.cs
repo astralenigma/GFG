@@ -21,6 +21,8 @@ public class GameManager : MonoBehaviour
     public Slider energyBar;
     public TextMeshProUGUI taskCounter;
     public TextMeshProUGUI taskDoneCounter;
+    [Header("End")]
+    public TextMeshProUGUI endText;
     [Header("Time")]
     public TextMeshProUGUI clock;
     public Light sun;
@@ -90,6 +92,7 @@ public class GameManager : MonoBehaviour
             CheckGameOver();
             UpdateCanvas();
             EnergyDrain();
+            energyCanvasUpdate();
         }
     }
 
@@ -100,6 +103,11 @@ public class GameManager : MonoBehaviour
         //Canvas Update procedure
     }
     #region Energy Functions
+
+    private void energyCanvasUpdate()
+    {
+        energyBar.value = Energy / maxEnergy;
+    }
     private void EnergyDrain()
     {
         Energy -= energyDrain * Time.deltaTime;
@@ -193,7 +201,8 @@ public class GameManager : MonoBehaviour
     void GameOver(int victory)
     {
         endGameMessage = GenerateEndGameMessage(victory);
-        endGameBackground[victory].SetActive(true);
+        //endGameBackground[victory].SetActive(true);
+        endText.text = endGameMessage;
         EndGame();
     }
 
