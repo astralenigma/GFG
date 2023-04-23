@@ -34,9 +34,13 @@ public class GameManager : MonoBehaviour
         }
         set
         {
-            if (value <= 0 && maxEnergy >= value)
+            if (maxEnergy >= value)
             {
                 _energy = value;
+                if (_energy < 0)
+                {
+                    _energy = 0;
+                }
             }
         }
     }
@@ -90,7 +94,7 @@ public class GameManager : MonoBehaviour
     }
     private void EnergyDrain()
     {
-        Energy -= energyDrain * Time.deltaTime;
+        Energy -= energyDrain*Time.deltaTime;
         if (Energy <= 0)
         {
             Knockout();
@@ -102,7 +106,7 @@ public class GameManager : MonoBehaviour
         activePlayer.GetComponent<CharacterController>().enabled = false;
         activePlayer.transform.position = FindClosestRest();
         time += 60;
-        Energy = maxEnergy * 0.2f;
+        Energy = maxEnergy * 0.5f;
         activePlayer.GetComponent <CharacterController>().enabled = true;
     }
     private Vector3 FindClosestRest()
@@ -196,7 +200,6 @@ public class GameManager : MonoBehaviour
         StartCoroutine(LoadAsyncScene(1));
         menu.SetActive(false);
         loadingScreen.SetActive(true);
-        gameStarted = true;
         StartCoroutine(CreateTaskRoutine());
     }
 
