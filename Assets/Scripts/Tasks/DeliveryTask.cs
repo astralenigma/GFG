@@ -6,8 +6,10 @@ public class DeliveryTask : Task
 {
     [SerializeField]
     EscortItem item;
+    [SerializeField]
+    Transform destiny;
     bool itemInTransit = false;
-    public void itemCollected(EscortItem item)
+    public void itemCollected()
     {
         itemInTransit = true;
     }
@@ -16,14 +18,16 @@ public class DeliveryTask : Task
     {
         TaskFinished();
     }
-    public void DestinationReached()
+    public void DestinationReached(Player player)
     {
         if (itemInTransit)
         {
-            GetComponent<Player>().SetCarriedItem(null);
+            player.RemoveCarriedItem();
             itemDelivered();
 
         }
+        item.transform.SetParent(destiny,false);
+        //item.transform.position=destiny.position;
     }
     public override void SetupTask()
     {

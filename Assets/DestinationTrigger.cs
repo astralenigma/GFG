@@ -11,7 +11,8 @@ public class DestinationTrigger : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            task.DestinationReached();
+            GetComponent<Collider>().enabled = false;
+            task.DestinationReached(other.GetComponent<Player>());
         }
     }
 }

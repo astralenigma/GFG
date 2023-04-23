@@ -23,7 +23,7 @@ public abstract class Task : MonoBehaviour
     {
         Destroy(goalNotification.gameObject);
         GameManager.Instance.RemoveTask(this);
-        gameObject.SetActive(false);
+        //gameObject.SetActive(false);
     }
     public void SetupGoalNotification(GoalNotification goal)
     {
