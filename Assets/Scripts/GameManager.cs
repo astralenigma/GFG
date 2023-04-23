@@ -94,6 +94,7 @@ public class GameManager : MonoBehaviour
 
     private void UpdateCanvas()
     {
+
         phone.SetInteger("notif", activeTasks.Count);
         //Canvas Update procedure
     }
