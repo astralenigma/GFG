@@ -85,7 +85,7 @@ AnimatorController:
   m_Name: Phone
   serializedVersion: 5
   m_AnimatorParameters:
-  - m_Name: Notifications
+  - m_Name: notif
     m_Type: 3
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -113,7 +113,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 6
-    m_ConditionEvent: Notifications
+    m_ConditionEvent: notif
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -1746619471809240422}
@@ -138,7 +138,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 3
-    m_ConditionEvent: Notifications
+    m_ConditionEvent: notif
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -3838251171217902927}
