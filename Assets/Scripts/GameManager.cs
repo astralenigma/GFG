@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     [Header("HUD")]
     public GoalNotification prefabNotification;
     public VerticalLayoutGroup verticalLayout;
+    public Animator phone;
     public Slider energyBar;
     public TextMeshProUGUI taskCounter;
     public TextMeshProUGUI taskDoneCounter;
@@ -86,13 +87,14 @@ public class GameManager : MonoBehaviour
         {
             TickTime();
             CheckGameOver();
-            UpdateText();
+            UpdateCanvas();
             EnergyDrain();
         }
     }
 
-    private void UpdateText()
+    private void UpdateCanvas()
     {
+        phone.SetFloat("Notifications",activeTasks.Count);
         //Canvas Update procedure
     }
     #region Energy Functions
@@ -164,7 +166,7 @@ public class GameManager : MonoBehaviour
 
     internal void AddActiveTask(Task task)
     {
-        task.SetupGoalNotification(Instantiate(prefabNotification));
+        task.SetupGoalNotification(Instantiate(prefabNotification,verticalLayout.transform));
         activeTasks.Add(task);
     }
     #endregion
