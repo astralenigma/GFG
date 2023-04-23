@@ -1388,14 +1388,13 @@ MonoBehaviour:
   startHour: 7
   startMinute: 0
   maxEnergy: 1
-  energy: 0
   energyDrain: 0.1
   tasks: 0
   tasksDone: 0
   timeBetweenTasks: 30
-  possibleTasks:
-  - {fileID: 8971995413591963085, guid: ba08dbf9c386ab14a94c58aebd0d5c21, type: 3}
+  possibleTasks: []
   activeTasks: []
+  restoreLocations: []
 --- !u!4 &1793988938
 Transform:
   m_ObjectHideFlags: 0
