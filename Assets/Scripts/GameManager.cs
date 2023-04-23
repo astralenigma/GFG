@@ -205,7 +205,7 @@ public class GameManager : MonoBehaviour
                 case 2: return "És o melhor voluntário do evento.";
             default:
                 return "Acabou o jogo.";
-                break;
+                
         }
     }
 
