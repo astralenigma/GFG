@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8919134809178398242
 Transform:
   m_ObjectHideFlags: 0
@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   goal: Limpar o lixo no Piso 0.
+  active: 0
   items:
   - {fileID: 9011058933211009261}
 --- !u!1001 &891780498960711980
@@ -102,6 +103,10 @@ PrefabInstance:
     - target: {fileID: 4238518191740116746, guid: ff67ca0a5ef749c408cb8bf2f835579e, type: 3}
       propertyPath: m_Name
       value: Lixo
+      objectReference: {fileID: 0}
+    - target: {fileID: 4238518191740116746, guid: ff67ca0a5ef749c408cb8bf2f835579e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8173342800277639617, guid: ff67ca0a5ef749c408cb8bf2f835579e, type: 3}
       propertyPath: task
