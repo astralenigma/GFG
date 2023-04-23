@@ -191,6 +191,7 @@ public class GameManager : MonoBehaviour
         StartCoroutine(LoadAsyncScene(1));
         menu.SetActive(false);
         loadingScreen.SetActive(true);
+        gameStarted = true;
         StartCoroutine(CreateTaskRoutine());
     }
 
