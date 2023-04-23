@@ -2,17 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnergyTransform : MonoBehaviour
+[ExecuteInEditMode()]
+public class RectTransformLockPosition : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private RectTransform rectTransform;
+    private Vector3 startPosition;
+    protected void Awake()
     {
-        
+        rectTransform = GetComponent<RectTransform>();
+        startPosition = transform.position;
     }
-
-    // Update is called once per frame
-    void Update()
+    private void LateUpdate()
     {
-        
+        if (startPosition != null)
+        {
+            rectTransform.position = startPosition;
+        }
     }
 }

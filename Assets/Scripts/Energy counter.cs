@@ -1,18 +1,35 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class Energycounter : MonoBehaviour
+public class SlidableMask : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField]
+    private Slider slider;
+
+   
+
+    private RectTransform rectTransform;
+    private Vector3 farLeft;
+    private Vector3 farRight;
+
+    private void Awake()
     {
-        
+        rectTransform = GetComponent<RectTransform>();
+        slider.onValueChanged.AddListener(HandleSliderChanged);
+
+        farLeft = rectTransform.position - new Vector3(rectTransform.rect.width, 0f);
+        farRight = rectTransform.position;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        
+        HandleSliderChanged(GameManager.Instance.Energy/GameManager.Instance.maxEnergy); // This needs to be called AFTER RectTransformLockPositions's Awake().
+    }
+
+    private void HandleSliderChanged(float value)
+    {
+        rectTransform.position = Vector2.Lerp(farLeft, farRight, value);
     }
 }
