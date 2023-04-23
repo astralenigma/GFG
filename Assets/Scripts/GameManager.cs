@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     public GameObject hud;
     [Header("HUD")]
     public GoalNotification prefabNotification;
+    public VerticalLayoutGroup verticalLayout;
     public Slider energyBar;
     public TextMeshProUGUI taskCounter;
     public TextMeshProUGUI taskDoneCounter;
@@ -94,9 +95,10 @@ public class GameManager : MonoBehaviour
     {
         //Canvas Update procedure
     }
+    #region Energy Functions
     private void EnergyDrain()
     {
-        Energy -= energyDrain*Time.deltaTime;
+        Energy -= energyDrain * Time.deltaTime;
         if (Energy <= 0)
         {
             Knockout();
@@ -109,7 +111,7 @@ public class GameManager : MonoBehaviour
         activePlayer.transform.position = FindClosestRest();
         time += 60;
         Energy = maxEnergy * 0.5f;
-        activePlayer.GetComponent <CharacterController>().enabled = true;
+        activePlayer.GetComponent<CharacterController>().enabled = true;
     }
     private Vector3 FindClosestRest()
     {
@@ -120,13 +122,22 @@ public class GameManager : MonoBehaviour
         foreach (GameObject local in restLocations)
         {
             float closest1 = Vector3.Distance(position, closestLocation.transform.position);
-            if (closest1 > Vector3.Distance(position, local.transform.position) ){
+            if (closest1 > Vector3.Distance(position, local.transform.position))
+            {
                 closestLocation = local;
             }
         }
         return closestLocation.transform.position;
 
     }
+    public void RestoreEnergy(float rate)
+    {
+        Energy += energyDrain * rate * Time.deltaTime;
+    }
+
+    #endregion
+
+    #region Task Functions
     IEnumerator CreateTaskRoutine()
     {
         while (!gameEnded)
@@ -144,6 +155,20 @@ public class GameManager : MonoBehaviour
         possibleTasks.Remove(activatedTask);
         tasks++;
     }
+
+    internal void RemoveTask(Task task)
+    {
+        activeTasks.Remove(task);
+        tasksDone++;
+    }
+
+    internal void AddActiveTask(Task task)
+    {
+        task.SetupGoalNotification(Instantiate(prefabNotification));
+        activeTasks.Add(task);
+    }
+    #endregion
+
     private void CheckGameOver()
     {
         if (tasks - tasksDone > 4)
@@ -159,32 +184,6 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("You Lose");
     }
-    void TogglePause()
-    {
-        if (paused)
-        {
-            ResumeGame();
-        }
-        else
-        {
-            PauseGame();
-        }
-    }
-    void PauseGame()
-    {
-        Time.timeScale = 0;
-        menu.SetActive(true);
-        hud.SetActive(false);
-        paused = true;
-    }
-
-    public void ResumeGame()
-    {
-        Time.timeScale = 1;
-        menu.SetActive(false);
-        hud.SetActive(true);
-        paused = false;
-    }
     void ResetVariables()
     { 
         paused = false;
@@ -194,15 +193,6 @@ public class GameManager : MonoBehaviour
         time = startHour * 60 + startMinute;
         gameStarted = false;
         gameEnded = false;
-    }
-    public void StartGame()
-    {
-        loadDone = false;
-        ResetVariables();
-        StartCoroutine(LoadAsyncScene(1));
-        menu.SetActive(false);
-        loadingScreen.SetActive(true);
-        StartCoroutine(CreateTaskRoutine());
     }
 
     IEnumerator LoadAsyncScene(int i)
@@ -226,19 +216,55 @@ public class GameManager : MonoBehaviour
     {
         gameEnded = true;
     }
+    #region MenuControls
+    public void ResumeGame()
+    {
+        Time.timeScale = 1;
+        menu.SetActive(false);
+        hud.SetActive(true);
+        paused = false;
+    }
+    void TogglePause()
+    {
+        if (paused)
+        {
+            ResumeGame();
+        }
+        else
+        {
+            PauseGame();
+        }
+    }
+    void PauseGame()
+    {
+        Time.timeScale = 0;
+        menu.SetActive(true);
+        hud.SetActive(false);
+        paused = true;
+    }
+
+    public void StartGame()
+    {
+        loadDone = false;
+        ResetVariables();
+        StartCoroutine(LoadAsyncScene(1));
+        menu.SetActive(false);
+        loadingScreen.SetActive(true);
+        StartCoroutine(CreateTaskRoutine());
+    }
+
     public void QuitGame()
     {
         Application.Quit();
     }
+    #endregion
+
+    #region Time Functions
     private void TickTime()
     {
         time += Time.deltaTime * timeRate;
         UpdateClock();
         UpdateSun();
-    }
-    public void RestoreEnergy(float rate)
-    {
-        Energy += energyDrain * rate * Time.deltaTime;
     }
     private void UpdateClock()
     {
@@ -256,19 +282,11 @@ public class GameManager : MonoBehaviour
         return time.ToString("00");
     }
 
+    #endregion
+
     internal void SetPlayer(Player player)
     {
         activePlayer = player;
     }
 
-    internal void RemoveTask(Task task)
-    {
-        activeTasks.Remove(task);
-        tasksDone++;
-    }
-
-    internal void AddActiveTask(Task task)
-    {
-        activeTasks.Add(task);
-    }
 }
