@@ -95,6 +95,7 @@ public class GameManager : MonoBehaviour
     private void UpdateCanvas()
     {
         phone.SetInteger("notif", activeTasks.Count);
+        taskDoneCounter.text = tasksDone.ToString("0000");
         //Canvas Update procedure
     }
     #region Energy Functions
