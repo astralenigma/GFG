@@ -9,7 +9,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1c6f17a7-8e57-483b-b181-1bfa51b3bf08" name="Changes" comment="" />
+    <list default="true" id="1c6f17a7-8e57-483b-b181-1bfa51b3bf08" name="Changes" comment="Shots finas feitas" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -17,6 +17,9 @@
   </component>
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="Git.Merge.Settings">
+    <option name="BRANCH" value="ricardo" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -147,7 +150,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682244357148</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Shots finas feitas">
+      <created>1682262989370</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1682262989370</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -181,6 +191,7 @@
     <MESSAGE value="Criaçãoda grid para asnotificações" />
     <MESSAGE value="Load Screen implementada" />
     <MESSAGE value="AAAAAAAa" />
-    <option name="LAST_COMMIT_MESSAGE" value="AAAAAAAa" />
+    <MESSAGE value="Shots finas feitas" />
+    <option name="LAST_COMMIT_MESSAGE" value="Shots finas feitas" />
   </component>
 </project>
