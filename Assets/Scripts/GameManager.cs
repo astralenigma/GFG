@@ -22,14 +22,19 @@ public class GameManager : MonoBehaviour
     public Slider energyBar;
     public TextMeshProUGUI taskCounter;
     public TextMeshProUGUI taskDoneCounter;
-    [Header("End")]
+    [Header("End Game")]
     public TextMeshProUGUI endText;
+    public GameObject[] endGameBackground;
+    public string[] endGameTextOptions;
+    public string generalEndText;
+    public static GameManager Instance { get; private set; }
     [Header("Time")]
     public TextMeshProUGUI clock;
     public Light sun;
     public float timeRate = 180;
     public int startHour = 0;
     public int startMinute = 0;
+
     [Header("Game")]
     public float maxEnergy = 1;
     private float _energy;
@@ -53,6 +58,7 @@ public class GameManager : MonoBehaviour
     }
     [Range(0f, 1f)]
     public float energyDrain = .1f;
+
     [Header("Tasks")]
     public float tasks;
     public float tasksDone;
@@ -60,11 +66,7 @@ public class GameManager : MonoBehaviour
     public List<Task> possibleTasks;
     public List<Task> activeTasks;
     public List<EnergyRestoreLocation> restoreLocations;
-    [Header("End Game")]
-    public string[] endGameTextOptions;
-    public GameObject[] endGameBackground;
-    public string generalEndText;
-    public static GameManager Instance { get; private set; }
+
     AsyncOperation asyncLoad;
     Player activePlayer;
     bool loadDone;
@@ -101,6 +103,9 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Updates general game information.
+    /// </summary>
     private void UpdateCanvas()
     {
 
@@ -109,11 +114,17 @@ public class GameManager : MonoBehaviour
         //Canvas Update procedure
     }
     #region Energy Functions
-
+    /// <summary>
+    /// Updates the energy bar in the UI.
+    /// </summary>
     private void energyCanvasUpdate()
     {
         energyBar.value = Energy / maxEnergy;
     }
+
+    /// <summary>
+    /// Energy Drain tick game logic.
+    /// </summary>
     private void EnergyDrain()
     {
         Energy -= energyDrain * Time.deltaTime;
@@ -123,6 +134,9 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Complete loss of energy game logic.
+    /// </summary>
     private void Knockout()
     {
         activePlayer.GetComponent<CharacterController>().enabled = false;
@@ -131,6 +145,11 @@ public class GameManager : MonoBehaviour
         Energy = maxEnergy * 0.5f;
         activePlayer.GetComponent<CharacterController>().enabled = true;
     }
+
+    /// <summary>
+    /// Search for closest energy restore position from the player.
+    /// </summary>
+    /// <returns>Vector3 position of the closest restore position.</returns>
     private Vector3 FindClosestRest()
     {
         Vector3 position = activePlayer.transform.position;
@@ -148,6 +167,12 @@ public class GameManager : MonoBehaviour
         return closestLocation.transform.position;
 
     }
+
+    
+    /// <summary>
+    /// Code to restore energy based on energy drain and a rate.
+    /// </summary>
+    /// <param name="rate">Recovery rate percentage compared to Energy drain.</param>
     public void RestoreEnergy(float rate)
     {
         Energy += energyDrain * rate * Time.deltaTime;
@@ -156,6 +181,10 @@ public class GameManager : MonoBehaviour
     #endregion
 
     #region Task Functions
+    /// <summary>
+    /// Routine to generate tasks.
+    /// </summary>
+    /// <returns></returns>
     IEnumerator CreateTaskRoutine()
     {
         while (!gameEnded)
@@ -164,6 +193,9 @@ public class GameManager : MonoBehaviour
             yield return new WaitForSeconds(timeBetweenTasks);
         }
     }
+    /// <summary>
+    /// Game logic to Create Tasks.
+    /// </summary>
     void CreateTask()
     {
         if (possibleTasks.Count <= 0) { return; }
@@ -173,13 +205,19 @@ public class GameManager : MonoBehaviour
         possibleTasks.Remove(activatedTask);
         tasks++;
     }
-
+    /// <summary>
+    /// Remove a task from the active list.
+    /// </summary>
+    /// <param name="task">Task to be removed from the active list.</param>
     internal void RemoveTask(Task task)
     {
         activeTasks.Remove(task);
         tasksDone++;
     }
-
+    /// <summary>
+    /// Add a task to the active list.
+    /// </summary>
+    /// <param name="task">Task to be added to the active list.</param>
     internal void AddActiveTask(Task task)
     {
         task.SetupGoalNotification(Instantiate(prefabNotification, verticalLayout.transform));
@@ -188,6 +226,9 @@ public class GameManager : MonoBehaviour
     #endregion
 
     #region EndGame
+    /// <summary>
+    /// Checks for gameover conditions then triggers the appropriate one if one was reached.
+    /// </summary>
     private void CheckGameOver()
     {
         if (tasks - tasksDone > 4)
@@ -205,6 +246,10 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Starts the Game Over procedures.
+    /// </summary>
+    /// <param name="victory">End Game victory/defeat type.</param>
     void GameOver(int victory)
     {
         endGameMessage = GenerateEndGameMessage(victory);
@@ -214,6 +259,11 @@ public class GameManager : MonoBehaviour
         EndGame();
     }
 
+    /// <summary>
+    /// Returns an End Game Message.
+    /// </summary>
+    /// <param name="victory">End Game victory/defeat type.</param>
+    /// <returns>End Game text to be shown.</returns>
     private string GenerateEndGameMessage(int victory)
     {
         try
@@ -226,7 +276,9 @@ public class GameManager : MonoBehaviour
             return generalEndText;
         }
     }
-
+    /// <summary>
+    /// Handles the End Game variables.
+    /// </summary>
     void EndGame()
     {
         gameEnded = true;
@@ -234,7 +286,9 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0;
     }
     #endregion
-
+    /// <summary>
+    /// Resets all game variables before the game starts.
+    /// </summary>
     void ResetVariables()
     {
         paused = false;
@@ -245,7 +299,11 @@ public class GameManager : MonoBehaviour
         gameStarted = false;
         gameEnded = false;
     }
-
+    /// <summary>
+    /// Loads the scene through a coroutine.
+    /// </summary>
+    /// <param name="i">Build Index of the secene to be loaded.</param>
+    /// <returns></returns>
     IEnumerator LoadAsyncScene(int i)
     {
         asyncLoad = SceneManager.LoadSceneAsync(i, LoadSceneMode.Single);
@@ -260,11 +318,19 @@ public class GameManager : MonoBehaviour
             loadDone = asyncLoad.isDone;
         }
         loadingScreen.SetActive(false);
-        gameStarted = true;
-        ResumeGame();
+        //if scene was the first game scene.
+        if (i==1)
+        {
+            gameStarted = true;
+            ResumeGame();
+        }
     }
     
     #region MenuControls
+
+    /// <summary>
+    /// Resumes game time.
+    /// </summary>
     public void ResumeGame()
     {
         Time.timeScale = 1;
@@ -272,6 +338,9 @@ public class GameManager : MonoBehaviour
         hud.SetActive(true);
         paused = false;
     }
+    /// <summary>
+    /// Switches paused gamestate.
+    /// </summary>
     void TogglePause()
     {
         if (paused)
@@ -283,6 +352,9 @@ public class GameManager : MonoBehaviour
             PauseGame();
         }
     }
+    /// <summary>
+    /// Sets the game to paused gamestate.
+    /// </summary>
     void PauseGame()
     {
         Time.timeScale = 0;
@@ -290,7 +362,9 @@ public class GameManager : MonoBehaviour
         hud.SetActive(false);
         paused = true;
     }
-
+    /// <summary>
+    /// Game Start logic.
+    /// </summary>
     public void StartGame()
     {
         loadDone = false;
@@ -300,7 +374,9 @@ public class GameManager : MonoBehaviour
         loadingScreen.SetActive(true);
         StartCoroutine(CreateTaskRoutine());
     }
-
+    /// <summary>
+    /// Closes the game.
+    /// </summary>
     public void QuitGame()
     {
         Application.Quit();
@@ -308,12 +384,18 @@ public class GameManager : MonoBehaviour
     #endregion
 
     #region Time Functions
+    /// <summary>
+    /// Updates time and time related game objects.
+    /// </summary>
     private void TickTime()
     {
         time += Time.deltaTime * timeRate;
         UpdateClock();
         UpdateSun();
     }
+    /// <summary>
+    /// Updates the UI clock.
+    /// </summary>
     private void UpdateClock()
     {
         int day = ((int)time / 1440) + 1;
@@ -321,17 +403,30 @@ public class GameManager : MonoBehaviour
         int minute = (int)(time % 60) / 10;
         clock.text = parseTime(hour) + ":" + parseTime(minute * 10);
     }
+
+    /// <summary>
+    /// Updates the sun position based on time.
+    /// </summary>
     void UpdateSun()
     {
         sun.transform.rotation = Quaternion.Euler(Vector3.right * (time - 420) * 0.25f);
     }
+
+    /// <summary>
+    /// Converts time for a clock based string. Makes sure it has zeros where there's no numbers.
+    /// </summary>
+    /// <param name="time">Variable that should be shown on the clock part.</param>
+    /// <returns>String with the number padded by 0.</returns>
     string parseTime(int time)
     {
         return time.ToString("00");
     }
 
     #endregion
-
+    /// <summary>
+    /// Sets the active player.
+    /// </summary>
+    /// <param name="player">Player component to be set as active Player.</param>
     internal void SetPlayer(Player player)
     {
         activePlayer = player;
