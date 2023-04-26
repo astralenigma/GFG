@@ -3190,7 +3190,12 @@ MonoBehaviour:
   possibleTasks: []
   activeTasks: []
   restoreLocations: []
+  endGameTextOptions:
+  - Deixaste ficar demasiadas tarefas por fazer.
+  - "Sobreviveste \xE0 press\xE3o."
+  - "\xC9s o melhor volunt\xE1rio do evento."
   endGameBackground: []
+  generalEndText: Acabou o jogo.
 --- !u!4 &1793988938
 Transform:
   m_ObjectHideFlags: 0

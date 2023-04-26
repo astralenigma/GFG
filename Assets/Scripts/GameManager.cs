@@ -53,13 +53,17 @@ public class GameManager : MonoBehaviour
     }
     [Range(0f, 1f)]
     public float energyDrain = .1f;
+    [Header("Tasks")]
     public float tasks;
     public float tasksDone;
     public float timeBetweenTasks = 30;
     public List<Task> possibleTasks;
     public List<Task> activeTasks;
     public List<EnergyRestoreLocation> restoreLocations;
+    [Header("End Game")]
+    public string[] endGameTextOptions;
     public GameObject[] endGameBackground;
+    public string generalEndText;
     public static GameManager Instance { get; private set; }
     AsyncOperation asyncLoad;
     Player activePlayer;
@@ -183,6 +187,7 @@ public class GameManager : MonoBehaviour
     }
     #endregion
 
+    #region EndGame
     private void CheckGameOver()
     {
         if (tasks - tasksDone > 4)
@@ -191,7 +196,7 @@ public class GameManager : MonoBehaviour
         }
         if (time > (startHour * 60 + startMinute) + 1440)
         {
-            if (tasks==tasksDone)
+            if (tasks == tasksDone)
             {
                 GameOver(2);
                 return;
@@ -205,22 +210,30 @@ public class GameManager : MonoBehaviour
         endGameMessage = GenerateEndGameMessage(victory);
         //endGameBackground[victory].SetActive(true);
         endText.text = endGameMessage;
-        StartCoroutine(LoadAsyncScene( 2 + victory));
+        StartCoroutine(LoadAsyncScene(2 + victory));
         EndGame();
     }
 
     private string GenerateEndGameMessage(int victory)
     {
-        switch (victory)
+        try
         {
-            case 0: return "Deixaste ficar demasiadas tarefas por fazer.";
-            case 1: return "Sobreviveste à pressão.";
-                case 2: return "És o melhor voluntário do evento.";
-            default:
-                return "Acabou o jogo.";
-                
+            return endGameTextOptions[victory];
+        }
+        catch (Exception)
+        {
+
+            return generalEndText;
         }
     }
+
+    void EndGame()
+    {
+        gameEnded = true;
+        endText.gameObject.SetActive(true);
+        Time.timeScale = 0;
+    }
+    #endregion
 
     void ResetVariables()
     {
@@ -250,12 +263,7 @@ public class GameManager : MonoBehaviour
         gameStarted = true;
         ResumeGame();
     }
-    void EndGame()
-    {
-        gameEnded = true;
-        endText.gameObject.SetActive(true);
-        Time.timeScale = 0;
-    }
+    
     #region MenuControls
     public void ResumeGame()
     {

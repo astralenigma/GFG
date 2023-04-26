@@ -3,7 +3,20 @@ guid: 0588c6af2784aa143a75eb70f03e78f3
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - menu: {instanceID: 0}
+  - loadingScreen: {instanceID: 0}
+  - hud: {instanceID: 0}
+  - endGame: {instanceID: 0}
+  - prefabNotification: {fileID: 5748525433665564745, guid: a35c89d986935f84bac9b3146227e0bb, type: 3}
+  - verticalLayout: {instanceID: 0}
+  - phone: {instanceID: 0}
+  - energyBar: {instanceID: 0}
+  - taskCounter: {instanceID: 0}
+  - taskDoneCounter: {instanceID: 0}
+  - endText: {instanceID: 0}
+  - clock: {instanceID: 0}
+  - sun: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
