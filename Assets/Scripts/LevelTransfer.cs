@@ -19,8 +19,8 @@ public class LevelTransfer : MonoBehaviour
         }
         
     }
-    IEnumerator restartMovement(PlayerMovement movement) { 
-        yield return new WaitForSeconds(1);
+    IEnumerator restartMovement(PlayerMovement movement) {
+        yield return new WaitForSeconds(0.1f);//WaitForEndOfFrame();
         movement.enabled=true;
     }
 }
