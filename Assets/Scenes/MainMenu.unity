@@ -3177,6 +3177,12 @@ MonoBehaviour:
   taskCounter: {fileID: 0}
   taskDoneCounter: {fileID: 2044291174}
   endText: {fileID: 310202294}
+  endGameBackground: []
+  endGameTextOptions:
+  - Deixaste ficar demasiadas tarefas por fazer.
+  - "Sobreviveste \xE0 press\xE3o."
+  - "\xC9s o melhor volunt\xE1rio do evento."
+  generalEndText: Acabou o jogo.
   clock: {fileID: 644715922}
   sun: {fileID: 2074488281}
   timeRate: 3.2
@@ -3186,16 +3192,10 @@ MonoBehaviour:
   energyDrain: 0.53
   tasks: 0
   tasksDone: 0
-  timeBetweenTasks: 30
+  timeBetweenTasks: 15
   possibleTasks: []
   activeTasks: []
   restoreLocations: []
-  endGameTextOptions:
-  - Deixaste ficar demasiadas tarefas por fazer.
-  - "Sobreviveste \xE0 press\xE3o."
-  - "\xC9s o melhor volunt\xE1rio do evento."
-  endGameBackground: []
-  generalEndText: Acabou o jogo.
 --- !u!4 &1793988938
 Transform:
   m_ObjectHideFlags: 0
