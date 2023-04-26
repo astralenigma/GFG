@@ -3190,8 +3190,6 @@ MonoBehaviour:
   startMinute: 0
   maxEnergy: 50
   energyDrain: 0.53
-  tasks: 0
-  tasksDone: 0
   timeBetweenTasks: 15
   possibleTasks: []
   activeTasks: []
@@ -3575,7 +3573,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2005800297
 RectTransform:
   m_ObjectHideFlags: 0

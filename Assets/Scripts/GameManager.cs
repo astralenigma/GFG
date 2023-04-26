@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI taskCounter;
     public TextMeshProUGUI taskDoneCounter;
     [Header("End Game")]
+    public GameObject endGameScreen;
     public TextMeshProUGUI endText;
     public GameObject[] endGameBackground;
     public string[] endGameTextOptions;
@@ -252,6 +253,10 @@ public class GameManager : MonoBehaviour
     /// <param name="victory">End Game victory/defeat type.</param>
     void GameOver(int victory)
     {
+        if (gameEnded)
+        {
+            return;
+        }
         endGameMessage = GenerateEndGameMessage(victory);
         //endGameBackground[victory].SetActive(true);
         endText.text = endGameMessage;
@@ -282,6 +287,7 @@ public class GameManager : MonoBehaviour
     void EndGame()
     {
         gameEnded = true;
+        endGameScreen.SetActive(true);
         endText.gameObject.SetActive(true);
         Time.timeScale = 0;
     }
