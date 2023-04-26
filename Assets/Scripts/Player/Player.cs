@@ -9,6 +9,12 @@ public class Player : MonoBehaviour
     [SerializeField]
     Transform itemHold;
     EscortItem carriedItem;
+
+    /// <summary>
+    /// if the player isn't carrying an item it sets item as being carried and moves it to the player's itemHold location.
+    /// </summary>
+    /// <param name="escortItem">Item to be set as being carried.</param>
+    /// <returns></returns>
     public bool SetCarriedItem(EscortItem escortItem)
     {
         if (carriedItem != null)
@@ -19,17 +25,19 @@ public class Player : MonoBehaviour
         if (carriedItem != null ) {
             carriedItem.transform.SetParent(itemHold,false);
         }
-        else
-        {
-            Destroy(carriedItem.gameObject);
-            carriedItem = null;
-        }
+        //else
+        //{
+        //    Destroy(carriedItem.gameObject);
+        //    carriedItem = null;
+        //}
         return true;
     }
-
+    /// <summary>
+    /// Removes the carried item.
+    /// </summary>
     public void RemoveCarriedItem()
     {
-        Destroy(carriedItem.gameObject );
+        //Destroy(carriedItem.gameObject );
         carriedItem=null;
     }
     // Start is called before the first frame update
@@ -43,11 +51,5 @@ public class Player : MonoBehaviour
         {
             GameManager.Instance.SetPlayer(this);
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
