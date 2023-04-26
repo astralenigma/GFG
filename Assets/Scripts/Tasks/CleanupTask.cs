@@ -6,10 +6,12 @@ public class CleanupTask : Task
 {
     [SerializeField]
     List<CollectItem> items;
-    private void Start()
-    {
-        
-    }
+
+    /// <summary>
+    /// Sets the information that the item(s) have been collected and the task has been 
+    /// finished when all have been collected.
+    /// </summary>
+    /// <param name="item">Item that has been collected.</param>
     public void itemCollected(CollectItem item)
     {
         items.Remove(item);
