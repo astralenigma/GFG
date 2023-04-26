@@ -60,8 +60,8 @@ public class GameManager : MonoBehaviour
     public float energyDrain = .1f;
 
     [Header("Tasks")]
-    public float tasks;
-    public float tasksDone;
+    float tasks;
+    float tasksDone;
     public float timeBetweenTasks = 30;
     public List<Task> possibleTasks;
     public List<Task> activeTasks;
