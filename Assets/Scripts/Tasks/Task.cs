@@ -35,6 +35,7 @@ public abstract class Task : MonoBehaviour
         {
             GameManager.Instance.AddActiveTask(this);
             SetupTask();
+            active = true;
         }
     }
 
@@ -45,6 +46,7 @@ public abstract class Task : MonoBehaviour
     {
         Destroy(goalNotification.gameObject);
         GameManager.Instance.RemoveTask(this);
+        active = false;
         //gameObject.SetActive(false);
     }
     /// <summary>
