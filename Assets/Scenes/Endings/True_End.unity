@@ -1119,7 +1119,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: conseguiu o cargo de Deitadora de lixo execotiva do iade
+  m_text: "Conseguiu o cargo de Volunt\xE1ria executiva do iade"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 33905b1063a454cdb8cdf086735922df, type: 2}
   m_sharedMaterial: {fileID: -1660826463827720654, guid: 33905b1063a454cdb8cdf086735922df, type: 2}

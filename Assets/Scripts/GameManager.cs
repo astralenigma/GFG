@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI taskCounter;
     public TextMeshProUGUI taskDoneCounter;
     [Header("End Game")]
-    public GameObject endGameScreen;
+    //public GameObject endGameScreen;
     public TextMeshProUGUI endText;
     public GameObject[] endGameBackground;
     public string[] endGameTextOptions;
@@ -287,7 +287,9 @@ public class GameManager : MonoBehaviour
     void EndGame()
     {
         gameEnded = true;
-        endGameScreen.SetActive(true);
+        endGame.SetActive(true);
+        hud.SetActive(false);
+        menu.SetActive(true);
         endText.gameObject.SetActive(true);
         Time.timeScale = 0;
     }
