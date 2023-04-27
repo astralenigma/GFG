@@ -8,10 +8,21 @@ public abstract class Task : MonoBehaviour
     protected string goal;
     public bool active=false;
     protected GoalNotification goalNotification;
+    bool gameManagerActive=false;
     // Start is called before the first frame update
     private void Awake()
     {
-        GameManager.Instance.possibleTasks.Add(this);
+        if (GameManager.Instance)
+        {
+            gameManagerActive = true;
+            GameManager.Instance.possibleTasks.Add(this);
+        }
+        else
+        {
+            Debug.LogWarning("Can't set Tasks without a Game Manager.");
+            gameManagerActive=false;
+        }
+        
     }
 
     /// <summary>
@@ -20,8 +31,11 @@ public abstract class Task : MonoBehaviour
     public abstract void SetupTask();
     public void activateTask()
     {
-        GameManager.Instance.AddActiveTask(this);
-        SetupTask();
+        if (gameManagerActive)
+        {
+            GameManager.Instance.AddActiveTask(this);
+            SetupTask();
+        }
     }
 
     /// <summary>
