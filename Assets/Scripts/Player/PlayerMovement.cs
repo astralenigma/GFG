@@ -20,12 +20,18 @@ public class PlayerMovement : MonoBehaviour
         controller = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
         lastRotationY = transform.rotation.y;
-        
+
     }
+#if UNITY_EDITOR
+
+    /// <summary>
+    /// Method to restore the player Movement for debug purposes.
+    /// </summary>
     public void DebugPlayerMovement()
     {
             Time.timeScale = 1.0f;
     }
+#endif
     // Update is called once per frame
     void Update()
     {
