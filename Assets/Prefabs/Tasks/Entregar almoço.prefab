@@ -109,7 +109,7 @@ MonoBehaviour:
   goal: "Servir o almo\xE7o"
   active: 0
   item: {fileID: 4603257942164592052}
-  destiny: {fileID: 4949441291413434976}
+  itemFinalDestiny: {fileID: 4949441291413434976}
 --- !u!1 &8530520087566435667
 GameObject:
   m_ObjectHideFlags: 0

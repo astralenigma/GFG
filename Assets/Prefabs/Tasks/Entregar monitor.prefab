@@ -49,7 +49,7 @@ MonoBehaviour:
   goal: Entregar o monitor no piso 3
   active: 0
   item: {fileID: 2426837341713780264}
-  destiny: {fileID: 8503478893566977922}
+  itemFinalDestiny: {fileID: 8503478893566977922}
 --- !u!1 &5821549874560316175
 GameObject:
   m_ObjectHideFlags: 0

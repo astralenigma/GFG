@@ -41,7 +41,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2600340428140333528}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 2, y: 2, z: 2}
@@ -108,7 +108,7 @@ MonoBehaviour:
   goal: Entregar o papel no piso 2
   active: 0
   item: {fileID: 1631277788122680026}
-  destiny: {fileID: 0}
+  itemFinalDestiny: {fileID: 0}
 --- !u!1001 &4366645914662235946
 PrefabInstance:
   m_ObjectHideFlags: 0
