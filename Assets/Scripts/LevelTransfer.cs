@@ -19,6 +19,12 @@ public class LevelTransfer : MonoBehaviour
         }
         
     }
+    /// <summary>
+    /// Routine to restart player movement. Might be possible to get rid of this 
+    /// by changing it's execution order
+    /// </summary>
+    /// <param name="movement">Movement component to reenable.</param>
+    /// <returns></returns>
     IEnumerator restartMovement(PlayerMovement movement) {
         yield return new WaitForSeconds(0.1f);//WaitForEndOfFrame();
         movement.enabled=true;
