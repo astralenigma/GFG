@@ -97,7 +97,7 @@ public class PlayerMovement : MonoBehaviour
     /// <summary>
     /// Function to read the input related with movement.
     /// </summary>
-    /// <returns></returns>
+    /// <returns>Input Vector for movement.</returns>
     Vector3 movementInput()
     {
         return new Vector3(Input.GetAxis("Horizontal"),0, Input.GetAxis("Vertical")); ;
