@@ -21,8 +21,11 @@ public class EscortItem : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            task.itemCollected();
-            other.GetComponent<Player>().SetCarriedItem(this);
+            if (other.GetComponent<Player>().SetCarriedItem(this))
+            {
+                task.itemCollected();
+            }
+            
         }
     }
 }
