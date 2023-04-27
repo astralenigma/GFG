@@ -24,6 +24,8 @@ public class Player : MonoBehaviour
         carriedItem = escortItem;
         if (carriedItem != null ) {
             carriedItem.transform.SetParent(itemHold,false);
+            carriedItem.transform.localRotation= Quaternion.identity;
+            carriedItem.transform.localPosition= Vector3.zero;
         }
         //else
         //{

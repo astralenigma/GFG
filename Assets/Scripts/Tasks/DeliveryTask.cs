@@ -38,6 +38,8 @@ public class DeliveryTask : Task
         if(itemFinalDestiny)
         {
             item.transform.SetParent(itemFinalDestiny, false);
+            item.transform.localPosition = Vector3.zero;
+            item.transform.localRotation = Quaternion.identity;
         }
         else
         {
