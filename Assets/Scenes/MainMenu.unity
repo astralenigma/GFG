@@ -3170,6 +3170,8 @@ MonoBehaviour:
   loadingScreen: {fileID: 859864358}
   hud: {fileID: 42626207}
   endGame: {fileID: 2005800296}
+  PlayButton: {fileID: 1869910052}
+  ResumeButton: {fileID: 693687806}
   prefabNotification: {fileID: 5748525433665564745, guid: a35c89d986935f84bac9b3146227e0bb, type: 3}
   verticalLayout: {fileID: 578035980}
   phone: {fileID: 580589857}
@@ -3403,30 +3405,6 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1869910050}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 693687804}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
         m_CallState: 2
       - m_Target: {fileID: 42626207}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine

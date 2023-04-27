@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour
     public GameObject loadingScreen;
     public GameObject hud;
     public GameObject endGame;
+    public Button PlayButton;
+    public Button ResumeButton;
     [Header("HUD")]
     public GoalNotification prefabNotification;
     public VerticalLayoutGroup verticalLayout;
@@ -94,7 +96,7 @@ public class GameManager : MonoBehaviour
         {
             TogglePause();
         }
-        if (gameStarted)
+        if (gameStarted&&!gameEnded)
         {
             TickTime();
             CheckGameOver();
@@ -290,6 +292,8 @@ public class GameManager : MonoBehaviour
         endGame.SetActive(true);
         hud.SetActive(false);
         menu.SetActive(true);
+        PlayButton.gameObject.SetActive(true);
+        ResumeButton.gameObject.SetActive(false);
         endText.gameObject.SetActive(true);
         Time.timeScale = 0;
     }
@@ -301,11 +305,18 @@ public class GameManager : MonoBehaviour
     {
         paused = false;
         Energy = maxEnergy;
+        activeTasks.Clear();possibleTasks.Clear();
+        foreach (GoalNotification item in verticalLayout.GetComponentsInChildren<GoalNotification>())
+        {
+            Destroy(item.gameObject);
+        }
+        
         tasks = 0;
         tasksDone = 0;
         time = startHour * 60 + startMinute;
         gameStarted = false;
         gameEnded = false;
+        endGame.SetActive(false);
     }
     /// <summary>
     /// Loads the scene through a coroutine.
@@ -379,6 +390,8 @@ public class GameManager : MonoBehaviour
         ResetVariables();
         StartCoroutine(LoadAsyncScene(1));
         menu.SetActive(false);
+        PlayButton.gameObject.SetActive(false);
+        ResumeButton.gameObject.SetActive(true);
         loadingScreen.SetActive(true);
         StartCoroutine(CreateTaskRoutine());
     }
