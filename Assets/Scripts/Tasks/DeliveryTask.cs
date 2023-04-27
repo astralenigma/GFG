@@ -42,6 +42,7 @@ public class DeliveryTask : Task
         else
         {
             item.gameObject.SetActive(false);
+            Destroy( item.gameObject);
         }
         
         //item.transform.position=destiny.position;
