@@ -33,18 +33,11 @@ public class PlayerMovement : MonoBehaviour
         
         if (movedir!=Vector3.zero)
         {
-            Vector3 right = cam.transform.right;
-            Vector3 forward = cam.transform.forward;
-            right.y = forward.y = 0;
-            right.Normalize();
-            forward.Normalize();
-            movedir = right * movedir.x + forward * movedir.z;
+            movedir = InputCorrectionByCamera(movedir);
             controller.Move(movedir.normalized * speed * Time.deltaTime);
-            float anglemove = Vector3.Angle(transform.rotation.eulerAngles, movedir);
-            Quaternion toRotation = Quaternion.LookRotation(movedir, Vector3.up);
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
+            float anglemove = HandleRotation(movedir);
             //float angle = Vector3.Angle( lastRotationY * Vector3.up, transform.rotation.eulerAngles);
-            animator.SetFloat("Turn", movedir.x* anglemove/90);
+            animator.SetFloat("Turn", movedir.x * anglemove / 90);
         }
         else
         {
@@ -56,7 +49,36 @@ public class PlayerMovement : MonoBehaviour
         //lastRotationY = transform.rotation.eulerAngles.y;
 
     }
-
+    /// <summary>
+    /// Method to handle player rotation based on player movement.
+    /// </summary>
+    /// <param name="movement">Player movement this update.</param>
+    /// <returns>Returns new Y angle for the player.</returns>
+    private float HandleRotation(Vector3 movement)
+    {
+        float anglemove = Vector3.Angle(transform.rotation.eulerAngles, movement);
+        Quaternion toRotation = Quaternion.LookRotation(movement, Vector3.up);
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
+        return anglemove;
+    }
+    /// <summary>
+    /// Method that corrects input based on the camera position.
+    /// </summary>
+    /// <param name="inputMoveDir">Vector3 representing the input movement.</param>
+    /// <returns>Corrected Vector3 based on camera position.</returns>
+    private Vector3 InputCorrectionByCamera(Vector3 inputMoveDir)
+    {
+        Vector3 right = cam.transform.right;
+        Vector3 forward = cam.transform.forward;
+        right.y = forward.y = 0;
+        right.Normalize();
+        forward.Normalize();
+        inputMoveDir = right * inputMoveDir.x + forward * inputMoveDir.z;
+        return inputMoveDir;
+    }
+    /// <summary>
+    /// Procedure to ground the player.
+    /// </summary>
     void Ground()
     {
         Ray ray = new Ray(transform.position+Vector3.up*0.1f, Vector3.down);
@@ -66,6 +88,10 @@ public class PlayerMovement : MonoBehaviour
             transform.position = hit.point;
         }
     }
+    /// <summary>
+    /// Function to read the input related with movement.
+    /// </summary>
+    /// <returns></returns>
     Vector3 movementInput()
     {
         return new Vector3(Input.GetAxis("Horizontal"),0, Input.GetAxis("Vertical")); ;

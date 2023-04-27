@@ -43,6 +43,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+#if UNITY_EDITOR
         if (GameManager.Instance == null)
         {
             GetComponent<PlayerMovement>().DebugPlayerMovement();
@@ -51,5 +52,6 @@ public class Player : MonoBehaviour
         {
             GameManager.Instance.SetPlayer(this);
         }
+#endif        
     }
 }
