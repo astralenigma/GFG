@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 2582095617661500360}
   - component: {fileID: 3712671659418003926}
   - component: {fileID: 4457753041413090954}
+  - component: {fileID: 7630532979850105995}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Destiny
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -59,6 +60,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   task: {fileID: 3763524636350843122}
+--- !u!114 &7630532979850105995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2600340428140333528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6494390499dff04ea5cf8f3a76d6b2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gizmoColor: {r: 1, g: 0.2643778, b: 0, a: 0.3764706}
+  gizmoOffset: {x: 0, y: 1, z: 0}
+  gizmoSize: {x: 2, y: 2, z: 2}
 --- !u!1 &3568134616521886828
 GameObject:
   m_ObjectHideFlags: 0
